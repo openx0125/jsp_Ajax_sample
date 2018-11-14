@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>My title</title>
+		<script type="text/javascript">
+		    window.onload = function() {
+				//Exercise 11
+		    	//var htmlTag = document.childNodes[0];
+				
+				//var headTag = htmlTag.childNodes[0];
+				//var bodyTag = htmlTag.childNodes[2];
+				
+				//var textInTitle = headTag.childNodes[1].innerHTML;
+				//var textInH1 = bodyTag.childNodes[1].firstChild.nodeValue;
+				//var textInA = bodyTag.childNodes[3].innerHTML;
+				
+				//alert("Text Inside Title=" + textInTitle);
+				//alert("Text Inside H1=" + textInH1);
+				//alert("Text Inside A=" + textInA);
+				
+				//Exercise 12
+				var titleTag = document.getElementsByTagName('title')[0];
+				var h1Tag = document.getElementsByTagName('h1')[0];
+				var aTag = document.getElementsByTagName('a')[0];
+				
+				//alert("Text Inside Title Tag = " + titleTag.firstChild.nodeValue);
+				//alert("Text Inside H1 Tag = " + h1Tag.firstChild.nodeValue);
+				alert("Text Inside A Tag = " + aTag.getAttribute('href'));
+				alert("Text Inside A Tag = " + aTag.href);
+				
+				aTag.href = "CUB/BBC/index.jsp";
+				alert("Text Inside A Tag = " + aTag.getAttribute('href'));
+				alert("Text Inside A Tag = " + aTag.href);
+				
+				aTag.setAttribute('href', 'CUB/JSPractice/index.jsp');
+				alert("Text Inside A Tag = " + aTag.getAttribute('href'));
+				alert("Text Inside A Tag = " + aTag.href);
+				
+				aTag.removeAttribute('href');
+				alert("Text Inside A Tag = " + aTag.getAttribute('href'));
+				alert("Text Inside A Tag = " + aTag.href);
+			};
+		</script>
+    </head>
+    <body>
+        <h1>My header</h1>
+        <a href="Gossip/index.html">My link</a>
+    </body>
+</html>
