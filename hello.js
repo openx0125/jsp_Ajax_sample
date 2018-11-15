@@ -141,7 +141,14 @@ arrayLike.forEach( function(elem){
     console.log(elem);
 });
 */
-arrayLike.forEach( console.log);
+
+function sum1(){
+    return console.log(this.length);
+}
+
+console.log('--->');
+arrayLike.forEach(  console.log);
+arrayLike.forEach(  sum1);
 console.log('*********====================================================');
 
 arrayLike.forEach(elem=>console.log(elem));
@@ -155,3 +162,38 @@ var obj = {
 for(var i=0;i<obj.length;i++){
     console.log(obj[i]);
 }
+console.log('===========================================================');
+//20181115 Closure page.84
+function foo(){
+    return{
+        x:10
+    };
+}
+var wat = foo();
+console.log('wat: '+wat.x);
+
+
+function foo1(x){
+    function getX(){
+        return x;
+    }
+    function setX(value){
+        x=value;
+    }
+    return {
+        getX : getX,
+        setX : setX
+    };
+}
+var wat1 = foo1(1);
+console.log('wat: '+wat1.getX());
+wat1.x = 20;
+console.log('wat: '+wat1.getX());
+console.log('===========================================================');
+wat1.setX(20);
+console.log('wat: '+wat1.getX());
+console.log('===========================================================');
+function toString(){
+    return '[' + this.name + ', ' + this.age + ']';
+}
+
