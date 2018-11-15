@@ -1,0 +1,39 @@
+<html>
+<head text="headText!!">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+ 	window.onload = function() {
+ 	//在這邊寫程式取得title, h1, 或標籤中的文字
+     //並使用alert顯示出來
+     title();
+     function title(){
+        var bb = document.documentElement.firstChild[0].nodeValue; //body
+//         var bb = document.firstChild.firstChild.childNodes[0].baseURI;
+alert('bb:: '+bb);
+var rootElement = document.documentElement;
+var firstTier = rootElement.childNodes;
+var Title = document.getElementsByTagName('title')[0].firstChild.nodeValue;
+//alert(Title);
+var script = document.getElementsByTagName('script')[0];
+alert('script: ' + script.firstChild.nodeValue);
+
+var a = document.getElementsByTagName('a')[0];
+//alert(a.firstChild.nodeValue);
+//alert(a.href);
+// firstTier is the NodeList of the direct children of the root element
+for (var i = 0; i < firstTier.length; i++) {
+   // do something with each direct kid of the root element
+   // as firstTier[i]
+}
+     }
+     var head = document.documentElement;
+  //   alert(head);
+ 	};
+</script>
+</head>
+<body>
+<h1>My Head</h1>
+<a href="index.html">My link</a>
+</body>
+</html>
