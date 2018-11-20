@@ -8,14 +8,19 @@
 			    var urls = ['http://openhome.cc', 'http://google.com'];
 			    
 			    document.getElementById('url').addEventListener('blur', function(event) {
-				    
-					for(var i = 0; i < urls.length; i++) {
-					    if(event.currentTarget.value === urls[i]) {
-						    document.getElementById('message').innerHTML = 'URL 已存在';
-							break;
-						}
-					}
-					
+                    
+                    var urlInput = event.currentTarget;
+					// for(var i = 0; i < urls.length; i++) {
+					//     if(event.currentTarget.value === urls[i]) {
+					// 	    document.getElementById('message').innerHTML = 'URL 已存在';
+					// 		break;
+					// 	}
+                    // }
+                    
+                    var sames = urls.filter( url => urlInput.value === url);
+                        if(sames.length !=0){
+                            document.getElementById('message').innerHTML = 'URL 已存在';
+                        }
 					
 				}, false);
 				
