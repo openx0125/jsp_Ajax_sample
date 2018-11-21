@@ -197,3 +197,64 @@ function toString(){
     return '[' + this.name + ', ' + this.age + ']';
 }
 
+
+console.log('===========================================================');
+var funcs = [];
+
+//Closure 
+for(var i =0;i<5;i++){
+    var f = function(){
+        return i;
+    }
+    funcs.push(f);
+}
+
+//顯示i值
+for(var j=0;j<funcs.length;j++){
+    var f = funcs[j];
+    console.log(f());
+}
+console.log('===========================================================');
+var pp = encodeURIComponent("http://www.google.com/index.htm?abc= ww34 &bb=中文");
+console.log(pp);
+console.log('===========================================================');
+//var array = [1,2,3];
+function ImmutableList(){
+    arguments.forEach = Array.prototype.forEach;
+    arguments.join = Array.prototype.join;
+    var lt = this;
+
+    arguments.forEach(function (elem, index) {
+        Object.defineProperty(lt, index,{
+            value: elem
+        });
+    });
+
+    Object.defineProperty(lt, 'length',{   
+        value : arguments.length
+    });
+    Object.preventExtensions(lt);
+
+
+
+    // for(var i=0;i<arguments.length;i++){
+    //     this[i] = arguments[i];
+    // }
+    // this.length = arguments.length;
+}
+ImmutableList.prototype.toString=function(){
+    return '[object ImmutableList]';
+};
+var array = new ImmutableList(1,2,3);
+var array_b = new ImmutableList(1,2,3,4,5);
+// array.forEach();
+console.log('array_b.length: ' + array_b.length);
+for(var i=0;i<array_b.length;i++){
+    console.log(array_b[i]);
+}
+array_b[1]=20;
+array_b[2]=30;
+
+for(var i=0;i< array_b.length;i++){
+    console.log(array_b[i]);
+}
