@@ -293,7 +293,7 @@ ImmutableList.prototype.map = function(handler){
             return[];
         }
         var head = array[0];
-        var tail = array[].slice(1);
+        var tail = array.slice(1);
         return [handler(head)].contat(__map(tail, handler));
     }
 
@@ -332,6 +332,33 @@ for(var i=0;i< array_b.length;i++){
 }
 console.log('===========================================================');
 function Account(number, name, balance){
+    Object.defineProperties(this, {
+        'number' : {
+            get : function(){
+                return number;
+            },
+            enumerable : true
+        },
+        'name' : {
+            get : function(){
+                return name;
+            },
+            enumerable : true
+        },        
+        'balance' : {
+            get : function(){
+                return balance;
+            },
+            enumerable : true
+        },    
+    });
+    this.deposet = function (money){
+        if(money <0){
+            throw Error('money cannot be negative');
+        }
+        balance+=money;
+    }
+
     this.number = number;
     this.name = name;
     this.balance = balance;
@@ -339,4 +366,6 @@ function Account(number, name, balance){
 var acct = new Account('X123', 'Justin Lin', 1000);
 console.log(acct.number, acct.name, acct.balance);
 acct.balance =1000;
+console.log(acct.number, acct.name, acct.balance);
+acct.deposet(-51000);
 console.log(acct.number, acct.name, acct.balance);
