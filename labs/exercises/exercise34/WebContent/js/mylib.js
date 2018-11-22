@@ -49,7 +49,7 @@ function param(obj) {
     }
     return pairs.join('&');
 }
-
+/*
 function id(idName) {
     return document.getElementById(idName);
 }
@@ -57,6 +57,7 @@ function id(idName) {
 function name(tagName) {
     return document.getElementsByTagName(tagName);
 }
+*/
 
 function proxy(dom, handler) {
     return function () {
