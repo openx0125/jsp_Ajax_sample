@@ -85,6 +85,7 @@ console.log(max(101,100));
 
 function sum(){
     var sum=0;
+    console.log("arguments.length:::" + arguments.length);
     for(var i=0;i< arguments.length;i++){
         sum+=arguments[i];
     }
@@ -233,6 +234,9 @@ function ImmutableList(){
     Object.defineProperty(lt, 'length',{   
         value : arguments.length
     });
+
+    
+
     Object.preventExtensions(lt);
 
 
@@ -245,6 +249,74 @@ function ImmutableList(){
 ImmutableList.prototype.toString=function(){
     return '[object ImmutableList]';
 };
+ImmutableList.prototype.toArray = function(){
+    var lt = this;
+    function arrayFrom(idx){
+        if(idx>=lt.length){
+            return[];
+        }else{
+
+        }
+        var current = lt[idx];
+        var remain = arrayFrom(idx+1);
+        return [current].concat(remain);
+    }
+
+    return arrayFrom(0);
+};
+ImmutableList.fromArray= function(array){
+    return new ImmutableList(array);
+}
+ImmutableList.prototype.filter = function(handler){
+    var lt = this;
+
+
+    function __filter(array, handler){
+        if(array.length===0){
+            return [];
+        }
+        var head = array[0];
+        var tail = array.slice(1);
+        if(handler(head)){
+            return [head].concat(__filter(tail, handler));
+        }else{
+            return __filter(tail, handler);
+        }
+    }
+    return ImmutableList.fromArray(__filter(this.toArray(), handler));
+};
+
+ImmutableList.prototype.map = function(handler){
+
+    function __map(array, handler){
+        if(array.length==0){
+            return[];
+        }
+        var head = array[0];
+        var tail = array[].slice(1);
+        return [handler(head)].contat(__map(tail, handler));
+    }
+
+    return ImmutableList.fromArray(__map(this.toArray(), handler));
+};
+
+var list = ImmutableList.fromArray([10,2,3,5,7]);
+var result = list.filter(function(elem){
+    return elem>=5;
+});
+ImmutableList.prototype.forEach = function(handler){
+    function __forEach(array, handler){
+        if(array.length===0){
+            return;
+        }
+        var head = array[0];
+        var tail = array.slice(1);
+        handler(head);
+        __forEach(tail, handler); //recursive--> only input tail..
+    };
+};
+
+
 var array = new ImmutableList(1,2,3);
 var array_b = new ImmutableList(1,2,3,4,5);
 // array.forEach();
@@ -258,3 +330,13 @@ array_b[2]=30;
 for(var i=0;i< array_b.length;i++){
     console.log(array_b[i]);
 }
+console.log('===========================================================');
+function Account(number, name, balance){
+    this.number = number;
+    this.name = name;
+    this.balance = balance;
+}
+var acct = new Account('X123', 'Justin Lin', 1000);
+console.log(acct.number, acct.name, acct.balance);
+acct.balance =1000;
+console.log(acct.number, acct.name, acct.balance);
